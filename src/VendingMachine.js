@@ -9,7 +9,7 @@ import axios from 'axios'
       status: "idle",
       credits: 0,
       change: 0,
-      selection: 'a1',
+      // selection: 'a1',
       treats: {
         a1: 12,
         b1: 12,
@@ -37,7 +37,7 @@ import axios from 'axios'
   return (
     <div>
       <p>{this.state.treats.a1}</p>
-      <button onClick={this.fetcher.bind(this)}>asdasd</button>
+      <button onClick={this.fetcher.bind(this)}>get</button>
     </div>
   )
   }
