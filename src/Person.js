@@ -7,7 +7,8 @@ import axios from 'axios'
      super()
      this.state = {
        credits: 500,
-       selection: 'a1'
+       selection: 'a1',
+       treats: []
      }
    }
 
@@ -16,7 +17,12 @@ import axios from 'axios'
        selection: `${this.state.selection}`,
        credits: `${this.state.credits}`
      })
-     .then(response => console.log(response))
+     .then(response => { if(response.data.change) {
+       this.setState({credits: response.data.change, treats: [...this.state.treats, response.data.treat]})
+     } else {
+       alert(response.data.error)
+     }
+   })
      .catch(error => console.log(error))
    }
 

@@ -9,7 +9,7 @@ import axios from 'axios'
       status: "idle",
       credits: 0,
       change: 0,
-      // selection: 'a1',
+      selection: 'a1',
       treats: {
         a1: 12,
         b1: 12,

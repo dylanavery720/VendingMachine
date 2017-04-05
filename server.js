@@ -4,12 +4,17 @@ const bodyParser = require('body-parser')
 var cors = require('cors')
 
 
-const vm = {
-  a1: {q: 12, p: 50},
-  b1: {q: 12, p: 75},
-  c1: {q: 12, p: 100}
+function Treat(name, price) {
+  this.name = name;
+  this.price = price;
 }
 
+
+const vm = {
+  a1: [new Treat('twix', 75), new Treat('twix', 75), new Treat('twix', 75), new Treat('twix', 75)],
+  b1: [new Treat('kit kat', 75), new Treat('kit kat', 75), new Treat('kit kat', 75), new Treat('kit kat', 75)],
+  c1: [new Treat('3musketeers', 75), new Treat('3musketeers', 75), new Treat('3musketeers', 75), new Treat('3musketeers', 75)]
+}
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -33,16 +38,17 @@ app.get('/treats/:id', (req, res) => {
 })
 
 app.post('/credits', (req, res) => {
+  let change;
     let credits = req.body.credits
     let selection = req.body.selection
     let keys = Object.keys(vm)
     return keys.forEach(key => {
       if(selection === key) {
-        console.log(vm[key].p)
-        if (vm[key].p <= credits) {
-          console.log(true)
+        if (vm[key][0].price <= credits) {
+          change = credits - vm[key][0].price
+          res.send({change: change, treat: vm[key][0].name})
         } else {
-          console.log(false)
+          res.send({error: 'You do not have enough money'})
         }
       }
     })
