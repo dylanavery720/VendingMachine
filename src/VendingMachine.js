@@ -37,7 +37,7 @@ import axios from 'axios'
   return (
     <div>
       <p>{this.state.treats.a1}</p>
-      <button onClick={this.fetcher.bind(this)}>asdasd</button>
+      <button onClick={this.fetcher.bind(this)}>get</button>
     </div>
   )
   }
