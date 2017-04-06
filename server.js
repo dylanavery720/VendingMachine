@@ -52,11 +52,12 @@ app.post('/credits', (req, res) => {
   let vendingMachine = new VendingMachine()
   let change;
     let credits = req.body.credits
-    let selection = req.body.selection
+    let selection = req.body.selection.toLowerCase()
     let keys = Object.keys(vendingMachine.treats)
     return keys.forEach(key => {
       if(selection === key) {
         if (vendingMachine.treats[key][0].price <= credits) {
+          console.log(vendingMachine.treats[key][0].price, credits)
           change = credits - vendingMachine.treats[key][0].price
           res.send({change: change, treat: vendingMachine.treats[key][0].name})
         } else {
