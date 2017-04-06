@@ -3,22 +3,24 @@ import axios from 'axios'
 
 
  class Person extends Component  {
-   constructor() {
+   constructor(name, credits, selection, treats) {
      super()
-     this.state = {
-       credits: 500,
-       selection: 'a1',
-       treats: []
-     }
+    this.name = name
+    this.credits = credits
+    this.selection = selection
+    this.treats = [treats]
    }
 
    poster() {
+     let person = new Person('Andy', 100, 'a1')
      axios.post('http://localhost:3001/credits', {
-       selection: `${this.state.selection}`,
-       credits: `${this.state.credits}`
+       selection: `${person.selection}`,
+       credits: `${person.credits}`
      })
      .then(response => { if(response.data.change) {
-       this.setState({credits: response.data.change, treats: [...this.state.treats, response.data.treat]})
+       person.credits = response.data.change
+       person.treats = [...person.treats, response.data.treat]
+
      } else {
        alert(response.data.error)
      }
@@ -29,7 +31,6 @@ import axios from 'axios'
   render() {
   return (
     <div>
-      <p>{this.state.credits}</p>
       <button onClick={this.poster.bind(this)}>post</button>
     </div>
   )
