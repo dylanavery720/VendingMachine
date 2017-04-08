@@ -27,6 +27,7 @@ function VendingMachine() {
   }
 }
 
+var vendingMachine = new VendingMachine()
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -49,7 +50,6 @@ app.get('/treats/:id', (req, res) => {
 })
 
 app.post('/credits', (req, res) => {
-  let vendingMachine = new VendingMachine()
   let change;
     let credits = req.body.credits
     let selection = req.body.selection.toLowerCase()
@@ -57,9 +57,9 @@ app.post('/credits', (req, res) => {
     return keys.forEach(key => {
       if(selection === key) {
         if (vendingMachine.treats[key][0].price <= credits) {
-          console.log(vendingMachine.treats[key][0].price, credits)
           change = credits - vendingMachine.treats[key][0].price
           res.send({change: change, treat: vendingMachine.treats[key][0].name})
+          vendingMachine.treats[key].shift()
         } else {
           res.send({error: 'You do not have enough money'})
         }
@@ -67,6 +67,11 @@ app.post('/credits', (req, res) => {
     })
 })
 
-app.listen(3001, function () {
+if(!module.parent) {
+  app.listen(3001, function () {
   console.log('Example app listening on port 3001!')
-})
+  })
+}
+
+
+module.exports = app;

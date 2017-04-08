@@ -37,7 +37,11 @@ import axios from 'axios'
   return (
     <div>
       <p>{this.state.treats.a1}</p>
-      <button onClick={this.fetcher.bind(this)}>get</button>
+        <button onClick={() => this.props.poster('a1')}>a1</button>
+        <button onClick={() => this.props.poster('b1')}>b1</button>
+        <button onClick={() => this.props.poster('c1')}>c1</button>
+        <button onClick={() => this.props.poster('a1')}>post</button>
+
     </div>
   )
   }

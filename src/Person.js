@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import axios from 'axios'
+import VendingMachine from './VendingMachine';
 
 var thePerson;
 
@@ -10,17 +11,21 @@ var thePerson;
     this.selection = selection
     this.credits = credits || 500
     this.treats = [treats]
+    this.state = {
+      person: false,
+    }
    }
 
    componentDidMount(){
      var personName = prompt('What is your name?')
-     thePerson = new Person(personName, 'a1')
+     thePerson = new Person(personName)
+     this.setState({person: true})
    }
 
-   poster() {
+   poster(selection) {
      console.log(thePerson)
      axios.post('http://localhost:3001/credits', {
-       selection: `${thePerson.selection}`,
+       selection: `${selection}`,
        credits: `${thePerson.credits}`
      })
      .then(response => { if(response.data.change) {
@@ -30,13 +35,13 @@ var thePerson;
        alert(response.data.error)
      }
    })
-     .catch(error => console.log(error))
+     .catch(error => alert('This candy is unavailable'))
    }
 
   render() {
   return (
     <div>
-      <button onClick={this.poster.bind(this)}>post</button>
+      {this.state.person && <VendingMachine poster={this.poster} person={this.state.person} />}
     </div>
   )
   }
