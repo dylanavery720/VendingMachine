@@ -5,32 +5,29 @@ import VendingMachine from './VendingMachine';
 var thePerson;
 
  class Person extends Component  {
-   constructor(name, selection, credits, treats) {
+   constructor() {
      super()
-    this.name = name
-    this.selection = selection
-    this.credits = credits || 500
-    this.treats = [treats]
     this.state = {
+      credits: 500,
       person: false,
+      name: '',
+      treats: []
     }
    }
 
    componentDidMount(){
      var personName = prompt('What is your name?')
-     thePerson = new Person(personName)
-     this.setState({person: true})
+     this.setState({person: true, name: personName})
    }
 
    poster(selection) {
-     console.log(thePerson)
+     console.log(this.state.credits)
      axios.post('http://localhost:3001/credits', {
        selection: `${selection}`,
-       credits: `${thePerson.credits}`
+       credits: `${this.state.credits}`
      })
      .then(response => { if(response.data.change) {
-       thePerson.credits = response.data.change
-       thePerson.treats = [...thePerson.treats, response.data.treat]
+       this.setState({credits: response.data.change, treats: [...this.state.treats, response.data.treat]})
      } else {
        alert(response.data.error)
      }
@@ -43,12 +40,12 @@ var thePerson;
     <div>
       {this.state.person &&
         <div>
-        <VendingMachine poster={this.poster} person={this.state.person} />
+        <VendingMachine poster={this.poster.bind(this)} person={this.state.person} />
         <div id="head"></div>
         <div id="arms"></div>
-        <div id="torso">{thePerson.name}</div>
-        <div className="wallet">Stash of Candy: {thePerson.treats}</div>
-        <div className="wallet">Stash of Money: ${thePerson.credits}</div>
+        <div id="torso">{this.state.name}</div>
+        <div className="wallet">Stash of Candy: {this.state.treats}</div>
+        <div className="wallet">Stash of Money: ${this.state.credits}</div>
       </div>
       }
   </div>
