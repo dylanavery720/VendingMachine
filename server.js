@@ -37,16 +37,9 @@ app.get('/', function (req, res) {
   res.send('Hello World!')
 })
 
-app.get('/treats/:id', (req, res) => {
-  let keys = Object.keys(vm)
-  return keys.forEach(key => {
-    if (req.params.id === key) {
-        vm[key].q -= 1
-    } else {
-      return
-    }
-    res.send({quantity: JSON.parse(vm[key].q)})
-  })
+app.get('/treats', (req, res) => {
+  console.log(vendingMachine)
+    res.send({treats: vendingMachine.treats})
 })
 
 app.post('/credits', (req, res) => {

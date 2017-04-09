@@ -6,26 +6,26 @@ import axios from 'axios'
   constructor() {
     super()
     this.state = {
-      status: "idle",
+      stocked: false,
       credits: 0,
       change: 0,
       selection: 'a1',
       treats: {
-        a1: 12,
-        b1: 12,
-        c1: 12
+        a1: null,
+        b1: null,
+        c1: null
       }
     }
   }
 
   componentDidMount(){
-
+    this.fetcher()
   }
 
   fetcher() {
-    axios.get(`http://localhost:3001/treats/${this.state.selection}`)
-    .then(response => response.data.quantity)
-    .then(quantity => this.setState({treats: {a1: `${quantity}`}}))
+    axios.get(`http://localhost:3001/treats/`)
+    .then(response => response.data.treats)
+    .then(data => this.setState({treats: {a1: `${data.a1[0].name}`, b1: `${data.b1[0].name}` , c1:`${data.c1[0].name}` }, stocked: true}))
     .catch(error => console.log(error))
   }
 
@@ -35,12 +35,16 @@ import axios from 'axios'
 
   render() {
   return (
-    <div>
-      <p>{this.state.treats.a1}</p>
-        <button onClick={() => this.props.poster('a1')}>a1</button>
-        <button onClick={() => this.props.poster('b1')}>b1</button>
-        <button onClick={() => this.props.poster('c1')}>c1</button>
-        <button onClick={() => this.props.poster('a1')}>post</button>
+    <div className="vending-machine">
+      {this.state.stocked && <div><p>{this.state.treats.a1}</p>
+        <button onClick={() => this.props.poster('a1')}>{this.state.treats.a1}</button>
+        <button onClick={() => this.props.poster('b1')}>{this.state.treats.b1}</button>
+        <button onClick={() => this.props.poster('c1')}>{this.state.treats.c1}</button>
+        <button onClick={() => this.props.poster('d1')}>d1</button>
+        <button onClick={() => this.props.poster('a2')}>a2</button>
+        <button onClick={() => this.props.poster('b2')}>b2</button>
+        <button onClick={() => this.props.poster('c2')}>c2</button>
+        <button onClick={() => this.props.poster('d2')}>d2</button></div>}
 
     </div>
   )

@@ -41,8 +41,15 @@ var thePerson;
   render() {
   return (
     <div>
-      {this.state.person && <VendingMachine poster={this.poster} person={this.state.person} />}
-    </div>
+      {this.state.person &&
+        <div>
+        <VendingMachine poster={this.poster} person={this.state.person} />
+        <div id="head"></div>
+        <div id="arms"></div>
+        <div id="torso">{thePerson.name}</div>
+      </div>
+      }
+  </div>
   )
   }
 }
