@@ -18,6 +18,11 @@
   font-size: large;
 }
 
+.candy-bar {
+  height: 80px;
+  width: 120px;
+}
+
 .vending-machine {
     display: inline-block;
     width: 50%;

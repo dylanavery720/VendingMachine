@@ -21,7 +21,6 @@ var thePerson;
    }
 
    poster(selection) {
-     console.log(this.state.credits)
      axios.post('http://localhost:3001/credits', {
        selection: `${selection}`,
        credits: `${this.state.credits}`
@@ -35,6 +34,12 @@ var thePerson;
      .catch(error => alert('This candy is unavailable'))
    }
 
+   loadTreats() {
+     return this.state.treats.map(treat => {
+       return <img className="candy-bar" src={treat} />
+     })
+   }
+
   render() {
   return (
     <div>
@@ -44,7 +49,7 @@ var thePerson;
         <div id="head"></div>
         <div id="arms"></div>
         <div id="torso">{this.state.name}</div>
-        <div className="wallet">Stash of Candy: {this.state.treats}</div>
+        <div className="wallet">Stash of Candy: {this.loadTreats()}</div>
         <div className="wallet">Stash of Money: ${this.state.credits}</div>
       </div>
       }
