@@ -9,21 +9,18 @@ function Treat(name, price) {
   this.price = price;
 }
 
-
-const vm = {
-  a1: [new Treat('twix', 75), new Treat('twix', 75), new Treat('twix', 75), new Treat('twix', 75)],
-  b1: [new Treat('kit kat', 75), new Treat('kit kat', 75), new Treat('kit kat', 75), new Treat('kit kat', 75)],
-  c1: [new Treat('3musketeers', 75), new Treat('3musketeers', 75), new Treat('3musketeers', 75), new Treat('3musketeers', 75)]
-}
-
 function VendingMachine() {
-  this.status = 'idle',
   this.credits = 0,
   this.change = 0,
   this.treats = {
-    a1: [new Treat('twix', 75), new Treat('twix', 75), new Treat('twix', 75), new Treat('twix', 75)],
+    a1: [new Treat('twix', 125), new Treat('twix', 125), new Treat('twix', 125), new Treat('twix', 125)],
     b1: [new Treat('kit kat', 75), new Treat('kit kat', 75), new Treat('kit kat', 75), new Treat('kit kat', 75)],
-    c1: [new Treat('3musketeers', 75), new Treat('3musketeers', 75), new Treat('3musketeers', 75), new Treat('3musketeers', 75)]
+    c1: [new Treat('3musketeers', 75), new Treat('3musketeers', 75), new Treat('3musketeers', 75), new Treat('3musketeers', 75)],
+    d1: [new Treat('snickers', 50), new Treat('snickers', 50), new Treat('snickers', 50), new Treat('snickers', 50)],
+    a2: [new Treat('carmello', 75), new Treat('carmello', 75), new Treat('carmello', 75), new Treat('carmello', 75)],
+    b2: [new Treat('milky way', 50), new Treat('milky way', 50), new Treat('milky way', 50), new Treat('milky way', 50)],
+    c2: [new Treat('tiger milk', 100), new Treat('tiger milk', 100), new Treat('tiger milk', 100), new Treat('tiger milk', 100)],
+    d2: [new Treat('camel lights', 175), new Treat('camel lights', 175), new Treat('camel lights', 175), new Treat('camel lights', 175)]
   }
 }
 
