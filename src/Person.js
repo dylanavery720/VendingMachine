@@ -47,6 +47,8 @@ var thePerson;
         <div id="head"></div>
         <div id="arms"></div>
         <div id="torso">{thePerson.name}</div>
+        <div className="wallet">Stash of Candy: {thePerson.treats}</div>
+        <div className="wallet">Stash of Money: ${thePerson.credits}</div>
       </div>
       }
   </div>

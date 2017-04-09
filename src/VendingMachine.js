@@ -42,14 +42,14 @@ import axios from 'axios'
   return (
     <div className="vending-machine">
       {this.state.stocked && <div><p>DENVERS BEST VM</p>
-        <button onClick={() => this.props.poster('a1')}>{this.state.treats.a1}</button>
-        <button onClick={() => this.props.poster('b1')}>{this.state.treats.b1}</button>
-        <button onClick={() => this.props.poster('c1')}>{this.state.treats.c1}</button>
-        <button onClick={() => this.props.poster('d1')}>{this.state.treats.d1}</button>
-        <button onClick={() => this.props.poster('a2')}>{this.state.treats.a2}</button>
-        <button onClick={() => this.props.poster('b2')}>{this.state.treats.b2}</button>
-        <button onClick={() => this.props.poster('c2')}>{this.state.treats.c2}</button>
-        <button onClick={() => this.props.poster('d2')}>{this.state.treats.d2}</button></div>}
+        <div className="treats" onClick={() => this.props.poster('a1')}>{this.state.treats.a1}</div>
+        <div className="treats" onClick={() => this.props.poster('b1')}>{this.state.treats.b1}</div>
+        <div className="treats" onClick={() => this.props.poster('c1')}>{this.state.treats.c1}</div>
+        <div className="treats" onClick={() => this.props.poster('d1')}>{this.state.treats.d1}</div>
+        <div className="treats" onClick={() => this.props.poster('a2')}>{this.state.treats.a2}</div>
+        <div className="treats" onClick={() => this.props.poster('b2')}>{this.state.treats.b2}</div>
+        <div className="treats" onClick={() => this.props.poster('c2')}>{this.state.treats.c2}</div>
+        <div className="treats" onClick={() => this.props.poster('d2')}>{this.state.treats.d2}</div></div>}
 
     </div>
   )
