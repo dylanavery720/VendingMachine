@@ -46,7 +46,8 @@ var thePerson;
       {this.state.person &&
         <div>
         <VendingMachine poster={this.poster.bind(this)} person={this.state.person} />
-        <div id="head"></div>
+        <div id="head"><img id="inner-head" src="http://artfcity.com/wp-content/uploads/2016/01/2.gif" /></div>
+        <div id="money">$$</div>
         <div id="arms"></div>
         <div id="torso">{this.state.name}</div>
         <div className="wallet">Stash of Candy: {this.loadTreats()}</div>
