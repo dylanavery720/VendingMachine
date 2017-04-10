@@ -30,7 +30,10 @@ import axios from 'axios'
   fetcher() {
     axios.get(`http://localhost:3001/treats/`)
     .then(response => response.data.treats)
-    .then(data => this.setState({treats: {a1: `${data.a1[0].name}`, b1: `${data.b1[0].name}`, c1:`${data.c1[0].name}`, d1:`${data.d1[0].name}`, a2:`${data.a2[0].name}`, b2:`${data.b2[0].name}`, c2:`${data.c2[0].name}`, d2:`${data.d2[0].name}`}, stocked: true}))
+    .then(data => {
+      let o = 'out of order'
+      this.setState({treats: {a1: `${data.a1[0] ? data.a1[0].name : o}`, b1: `${data.b1[0] ? data.b1[0].name : o}`, c1:`${data.c1[0] ? data.c1[0].name : o}`, d1:`${data.d1[0] ? data.d1[0].name : o}`, a2:`${data.a2[0] ? data.a2[0].name : o}`, b2:`${data.b2[0] ? data.b2[0].name : o}`, c2:`${data.c2[0] ? data.c2[0].name : o}`, d2:`${data.d2[0] ? data.d2[0].name: o}`}, stocked: true})
+  })
     .catch(error => console.log(error))
   }
 

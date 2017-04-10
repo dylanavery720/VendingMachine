@@ -1,25 +1,9 @@
+button {
+  margin: 5px;
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-#inner-head {
-  height: 40px;
 }
 
 .candy-bar {
@@ -37,8 +21,21 @@
     background: black;
 }
 
-button {
+.treats {
+  height: 20px;
+  color: red;
+  background-color: yellow;
+  display: inline-block;
   margin: 5px;
+  padding: 5px;
+}
+
+.wallet {
+  margin-top: 40px;
+}
+
+#inner-head {
+  height: 40px;
 }
 
 #head {
@@ -58,18 +55,6 @@ button {
   border-radius: 25%;
 }
 
-.treats {
-  height: 20px;
-  color: red;
-  background-color: yellow;
-  display: inline-block;
-  margin: 5px;
-  padding: 5px;
-}
-
-.wallet {
-  margin-top: 40px;
-}
 
 #money {
       height: 40px;
@@ -84,8 +69,3 @@ button {
       background: darkgrey;
       display: inline-block;
   }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
