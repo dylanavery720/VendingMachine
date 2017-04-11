@@ -94,12 +94,27 @@ describe('GET /treats', () => {
             if (err) { done(err); }
             expect(res).to.have.status(200);
             expect(res).to.be.json;
-            expect(res.body.treat).to.be.a('string');
-            expect(res.body.treat).to.equal('kitkat.png');
+            expect(res.body.treat).to.be.a('number');
             expect(res.body.change).to.equal(25);
             done();
           });
         })
 
+        it('should return a treat to the person', (done) => {
+          chai.request(app)
+            .post('/credits')
+            .send({
+              credits: 100,
+              selection: 'b1'
+            })
+            .end((err, res) => {
+              if (err) { done(err); }
+              expect(res).to.have.status(200);
+              expect(res).to.be.json;
+              expect(res.body.treat).to.be.a('string');
+              expect(res.body.treat).to.equal('kitkat.png');
+              done();
+            });
+          })
   });
 });
