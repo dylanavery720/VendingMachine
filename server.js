@@ -36,7 +36,6 @@ app.get('/', function (req, res) {
 })
 
 app.get('/treats', (req, res) => {
-  console.log(vendingMachine)
     res.send({treats: vendingMachine.treats})
 })
 
